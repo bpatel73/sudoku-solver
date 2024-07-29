@@ -7,6 +7,8 @@ const cors        = require('cors');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const apiRoutes         = require('./routes/api.js');
 const runner            = require('./test-runner');
+const SudokuSolver      = require('./controllers/sudoku-solver.js');
+const puzzleStrings     = require('./controllers/puzzle-strings.js');
 
 const app = express();
 
@@ -34,6 +36,10 @@ app.use(function(req, res, next) {
     .type('text')
     .send('Not Found');
 });
+
+let sudoku = new SudokuSolver();
+let solvedString = sudoku.solve(puzzleStrings.puzzlesAndSolutions[0][0])
+console.log(solvedString)
 
 //Start our server and tests!
 const PORT = process.env.PORT || 3000
