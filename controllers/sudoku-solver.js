@@ -28,6 +28,7 @@ class SudokuSolver {
         return false
       }
     }
+    console.log('Row:','reached outside loop, ready to return true')
     return true
   }
 
@@ -50,6 +51,7 @@ class SudokuSolver {
         return false
       }
     }
+    console.log('Column:','reached outside loop, ready to return true')
     return true
   }
 
@@ -75,6 +77,7 @@ class SudokuSolver {
         return false
       }
     }
+    console.log('Region:','reached outside loop, ready to return true')
     return true
   }
 
@@ -136,14 +139,15 @@ class SudokuSolver {
   }
 
   solve(puzzleString) {
-    console.log(puzzleString)
+    if(!this.validate(puzzleString) || puzzleString.length !== 81){
+      return false
+    }
     const board = this.stringToBoard(puzzleString)
     if(this.solveBoard(board)){
       return this.boardToString(board)
     }else{
       return ''
     }
-    
   }
 }
 
